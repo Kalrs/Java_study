@@ -60,3 +60,41 @@
    - 不再被任何变量引用的对象
    - 引用变量自动放弃
    - 人为将引用变量置为null
+### 实例
+```java 	
+public	class pepole{
+	public String name;
+	public int age;
+	public String toString(){
+		
+		
+		
+		return "我的名字叫:"+name+",今年:"+age+"岁";
+	}
+	public int conut(String src,String dst){
+			int i=0;//计数器
+			int index=0;//找到保存朋友的下标
+			index=src.indexOf(dst);
+			while(index!=-1){
+				i++;
+				index+=dst.length();//指定从那个下标开始找
+				index=src.indexOf(dst,index);
+			}
+			return i;
+	}
+	public static void main(String [] args){
+		pepole p=new pepole();
+		p.name="张三";
+		p.age=30;
+		System.out.println(p.toString());
+		String src="朋友啊朋友，你是我的朋友";
+		String dst="朋友";
+		int j=p.conut(src,dst);
+		System.out.println(dst+"出现次数为"+j);
+		
+	
+	}	
+}
+
+
+```
