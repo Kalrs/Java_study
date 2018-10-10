@@ -218,3 +218,54 @@ class Student extends Object
 }
 
 ```
+### 实例
+```java
+  package my;
+
+public class Person {
+
+	public static void main(String[] args) {
+		Student stu = new Student("张三",20,100);
+		stu.eat();
+		stu.goShcool();
+		stu.exam();
+		System.out.println(stu);
+	}
+
+}
+class person1{
+	private String name;
+	private int age;
+
+	public	 person1(String name,int age){
+		this.name=name;
+		this.age=age;
+	}
+	public void eat(){
+		System.out.println("I am eating!");
+	}
+	public void walk(){
+		System.out.println("I an walking!");
+	}	
+	public String toString() {
+		return "姓名"+name+"年龄"+age;
+	}
+	
+}
+class Student extends person1{
+	private int score;
+	public Student(String name,int age,int score){
+		super(name,age);
+		this.score=score;
+	}
+	public void goShcool() {
+		System.out.println("I am going to school");
+	}
+	public void exam() {
+		System.out.println("oh ,shiht");
+	}
+	public String toString() {
+		return super.toString()+"分数:"+score;
+	}
+}
+```
