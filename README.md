@@ -1,2 +1,2 @@
-# Java_study
+# Java
 ### java初学
