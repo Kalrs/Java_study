@@ -165,7 +165,7 @@ class B extends A{
   - getClass()
   - finalize()
 ### 实例
-```jaca
+```java
   public	class ObjectDemo{
 	
 	public static void main(String [] args){
