@@ -106,8 +106,104 @@ class Mystr{
 >public boolean before(Dare when)
 >public int compareTo(Date anotherDate)
 >public String toString()
+**DeteFormat是日期/时间格式化抽象类，他以与语言无关的方式格式化并分析日期或时间**
+**日期/时间格式化子类(如SimpleDateFormat)允许进行格式化(也就是日期->文本)、分析(文本->日期)**
+### 实例
+```java
+  public class DateDemo {
+	public static void main(String [] args) {
+		Date date = new Date();
+		System.out.println(date);
+		System.out.println(date.getTime());
+		date.setTime(1540898626666L);
+		System.out.println(date);
+		DateFormat df1=null;
+		DateFormat df2=null;
+		df1=DateFormat.getDateInstance();
+		df2=DateFormat.getDateTimeInstance();
+		System.out.println("Date:"+df1.format(date));
+		System.out.println("Date:"+df2.format(date));
+		DateFormat df3=null;
+		df3=DateFormat.getDateInstance(DateFormat.FULL, new Locale("zh","CN"));
+		System.out.println("Date:"+df3.format(date));
+		//SimpleDateFormat() 自定义格式
+		
+		String strDate="2010-10-19 10:11:30.345";
+		Date d=null;
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		SimpleDateFormat sdf1=new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss.SSS");
+		try {
+		d=sdf.parse(strDate);//把日期字符串中的日期部分抽取出来生成一个Date对象
+		}catch(Exception e) {
+		}
+		System.out.println(d);
+	    String str=sdf1.format(d);//把日期按指定模板方式格式化输出为字符串
+	    System.out.println(str);
+	}	
+```
+### Calendar日历类
+- 基本概念
+>为抽象类，为YEAR、MONTH、DAY_OF_MONTH等日历字段之间的转换提供了一些方法，并为操作日历字段（例如获得下星期的日期）提供了一些方法
+>与其他语言环境敏感类一样，Calendar提供了一个类方法geInstance，以获得此类型的一个通用对象。calendar的getinstance方法返回一个Calendar对象，其日历字段已由当前日期和时间初始化。
+- 主要方法
+ - public static Calendar getInstance()
+ - public final Date getTime()
+ - public final void setTime(Date date)
+ - public int get(int field)
+### 实例
+```java
+import java.util.Calendar;
+public class CalenderDemo {
+	public static void main(String [] args) {
+		Calendar a =Calendar.getInstance();
+		System.out.print(a.get(Calendar.YEAR)+" ");
+		System.out.print(a.get(Calendar.MONTH)+" ");
+		System.out.print(a.get(Calendar.DATE));
+		a.set(Calendar.YEAR,2019);
+		
+	}
+}	
+```
+ ### Math数学工具类
+ **执行基本数学运算方法。它是一个final类，其中定义的都是一些常量和静态方法。**
+- 常用方法
+   - sqrt //平方根 ceil(double a) //比a大的第一个整数
+   - floor(double a) //求比a小的第一个整数 pow
+   - round (double a) 四舍五入 random() 产生随机数
+- Java中，三种产生随机数方法
+   - 通过System.currentTimeMillis()来获取一个当前时间毫秒数的long型数字
+   - 通过Math random() 返回一个0到1之间的double值
+   - 通过Random类来产生一个随机数，是专业的Random工具类
+- Random随机数类
+   - 起源数字为种子数,在种子数的基础上进行一定的变换，从而产生需要的随机数字。相同种子数Random对象，相同次数生成的随机数字相同
+   - 两个构造方法:
+     - public Random()
+     - public Random(long seed)
+   - 常用方法 
+     - public void nextBytes(byte[] bytes)
+     - public int nextInt()
+     - public boolean nextBoolean()
+     - public float nextFloat()
+     - public float nextDouble()
+### 实例
+```java
+	public class MathRandomDemo {
+	public static void main(String [] args) {
+		System.out.println(Math.floor(10.55));
+		System.out.println(Math.ceil(-10.55));
+		System.out.println(Math.pow(2,3));
+		System.out.println(Math.round(10.6));
+		System.out.println(Math.random());
+		
+		Random random = new Random(/*System.currentTimeMillis()*/);
+		System.out.println(random.nextInt(5));
+	}
+}
+```
+### 实例
 
-
+   
+   
 
 
 
