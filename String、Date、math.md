@@ -201,8 +201,52 @@ public class CalenderDemo {
 }
 ```
 ### 实例
+```java
+	package my_java;
 
-   
+import java.util.Random;
+public class RandmoGenDemo {
+	public static void main(String [] args) {
+		System.out.println(RandomGen.codeGen());	
+	}
+}
+class RandomGen{
+	
+	//生成四位不重复的验证码
+	public static String codeGen() {
+		char [] codeSequence= {'A','B','C','D','E','F','G','H'};
+		
+		Random random =new Random();
+		
+		StringBuilder sb = new StringBuilder();
+		
+		int count =0;
+		
+		while(true) {
+			char c=codeSequence[random.nextInt(codeSequence.length)];
+			//随机产生一个小标，取出字符串中字符
+			//假设取出来的字符在动态字符串中不存在，代表没有重复的
+			if(sb.indexOf(c+"")==-1) {
+				sb.append(c);//追加到动态字符串
+				count++;
+				if(count==4) {
+					break;
+				}
+			}
+		
+		}
+		
+	 return sb.toString();
+		
+		
+	}
+	
+
+	
+}
+	
+
+```
    
 
 
