@@ -1,3 +1,4 @@
+### String
 - String对象一旦创建就不能改变。如果需要进行大量的字符串修改操作，应该使用StringBuffer/StringBuilder类或字符数组，最终结果可以被转换成string对象
 - StringBuffer 线程安全的可变字符序列
   - 一个类似于String的字符缓冲区，通过某些方法调用可以改变序列的长度和内容
