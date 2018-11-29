@@ -1,0 +1,58 @@
+### Java.lang.reflect库
+- Class类与Java.lang.reflect一起对反射概念进行支持
+- Java.lang包下
+  - Class<T>:表示一个正在运行的Java应用程序中的类和接口，是Reflection的起源
+- java.lang.reflect包下:
+  - Field类:代表类的成员变量(成员变量及类的属性)
+  - Method类：代表类的方法。
+  - Constructor类:代表类的构造方法
+  - Array类：提供动态创建数组，以及访问数组的元素的静态方方法
+### 反射实例化对象
+- 实例化无参构造函数的对象
+  - Class.newInstance
+  - Class.getConstructor(new Class[] {}).newInstance(new Object[]{})
+- 实例化带参构造函数的对象
+  - clazz.getConstructoc(Class<?>...parameterTypes).newInstance(Object...initargs)
+ ### 获取调用方法
+ - 获得当前类以及超类的Public Method
+ > Method[] arrMethods=classType.getMethods()
+ - 获得当前类声明的所有Method
+ > Method[] arrMethods=classType.getDeclaredMethods()
+ - 获得当前类以及超类指定的public Method
+ > Method method = classType.getMethod(String name,Class<?>...parameterTypes);
+ - 通过反射动态运行指定Method
+ > Object obj=method.invoke(Object obj,Object...args);
+ ### 获取调用属性
+ - 获得当前类以及超类的Public Field
+ > Field[] arrFields=classType.getFields();
+ - 获得当前类声明的所有Field
+ > Field[] arrFields=classType.getDeclaredFields();
+ - 获得当前类以及超类指定的public Field
+ > Field field=classType.getField(String name)
+ - 获得当前类申明的指定的public Method
+ > Field field = classType.getDeclaredField(String name);
+ - 通过反射动态设定Field的值
+ > field.set(Object obj,Object value);
+ - 通过反射动态获取Fie的值
+ - Object obj = field.get(Object obj);
+ ### 实例
+ ```java
+  public class ReflectionArray {
+	 public static void main(String [] args) throws Exception{
+		 //创建一维数组
+//		 Class<?> classType=Class.forName("java.lang.String");
+//		 Object array=Array.newInstance(classType, 5);
+//		 Array.set(array, 3, "abc");
+//		 System.out.println(Array.get(array, 3));
+		 //创建二维数组
+		 int [] dimens= {3,3};
+		Object array=Array.newInstance(int.class, dimens);
+		Object a=Array.get(array, 2);//获取第三行
+		Array.set(a, 2,5);
+		int [][] arr=(int [] [])array;
+		 System.out.println(arr[2][2]);
+		 
+	 }
+}
+
+ ```
