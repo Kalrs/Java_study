@@ -9,3 +9,66 @@
 - 动态编译:运行时确定类型，绑定对象。最大限度发挥了java的灵活性，体现了多态的应用，用以降低类之间的耦合性。
 - 反射机制的优点就是可以实现动态的创建和编译，体现出很大的灵活性，特别时在J2EE的开发中。
 - 缺点时对性能有影响。使用反射基本上时一种解释操作，这类的操作总是慢于直接执行的相同操作
+### 功能
+- 在运行时判断任意一个对象所属的类
+- 在运行时构造任意一个类的对象
+- 在运行时判断任意一个类所具有的成员变量和方法
+- 在运行时调用任意一个对象的方法(包括私有)
+### Class对象
+- 类是程序的一部分，每个类都有一个Class对象。每当编写并且编译一个新类就会产生一个Class对象
+- Class类没有公共构造方法。class对象是在加载类时有Java虚拟机以及通过调用类加载器中的方法自动构造的，不能显示声明。
+#### 获取Class
+- object.getClass()
+- class.getSuperclass()
+- .class 
+- Class.forName
+### 实例
+```java
+  
+public class ReflectionArrayDemo {
+	  public static void main(String [] args) {
+		  //对象名.getClass();
+		  
+		  Employee e=new Employee("站撒比",20);
+		  Class<?> classType=e.getClass();
+		  System.out.println(classType.getName());
+		  System.out.println(classType.getSuperclass().getName());
+		  //类名.class
+		  Class<?> classType1=Employee.class;
+		  System.out.println(classType1.getName());
+		  //使用forName
+		  try {
+			  Class<?> classType2=Class.forName("Employee");
+			  System.out.println(classType2.getName());
+		  }catch(ClassNotFoundException e1) {
+			  e1.printStackTrace();
+		  }
+		  //获取基本数据类型的Class对象
+		  Class<?> classType3= int.class;
+		  System.out.println(classType3.getName());
+		  //通过基本数据类型的包装类来获取对应的基本数据类型对应的class对象
+		  Class<?> classType4= Double.TYPE;
+		  System.out.println(classType4.getName());
+ }
+}
+class Employee{
+	private String name;
+	private int age;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public Employee(String name,int age) {
+		this.name = name;
+		this.age = age;
+	} 	
+}
+```
